@@ -1,4 +1,4 @@
-import { CxAsset, CxEntry, CxValues } from '@proc7ts/context-values';
+import { CxAsset, CxEntry, CxModifier, CxValues } from '@proc7ts/context-values';
 import { AfterEvent, EventKeeper, OnEvent } from '@proc7ts/fun-events';
 import { lazyValue, valueProvider } from '@proc7ts/primitives';
 import { Supply, SupplyPeer } from '@proc7ts/supply';
@@ -212,7 +212,7 @@ export namespace CxModule {
    *
    * @typeParam TCtx - Target context type.
    */
-  export interface Setup extends CxValues, CxValues.Modifier, SupplyPeer {
+  export interface Setup extends CxValues, CxModifier, SupplyPeer {
 
     /**
      * The module to set up.
