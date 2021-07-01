@@ -1,5 +1,4 @@
-import { CxSupply } from '@proc7ts/context-builder';
-import { CxAsset, CxEntry, CxRequest, CxValues } from '@proc7ts/context-values';
+import { CxAsset, CxEntry, CxRequest } from '@proc7ts/context-values';
 import {
   AfterEvent,
   AfterEvent__symbol,
@@ -22,7 +21,7 @@ export class CxModule$Usage {
 
   private _setup!: () => void;
 
-  constructor(context: CxValues, readonly module: CxModule) {
+  constructor(target: CxEntry.Target<CxModule.Handle, CxModule>, readonly module: CxModule) {
     this._impl = trackValue();
     this._rev = trackValue({
       status: {
@@ -35,10 +34,10 @@ export class CxModule$Usage {
       supply: neverSupply(),
     });
 
-    const contextSupply = context.get(CxSupply);
+    const supply = target.supply;
 
-    contextSupply.cuts(this._impl);
-    contextSupply.cuts(this._rev);
+    supply.cuts(this._impl);
+    supply.cuts(this._rev);
 
     this._impl.read(module => {
 
