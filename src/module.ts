@@ -98,7 +98,7 @@ export class CxModule implements CxEntry<CxModule.Handle, CxModule>, CxAsset<CxM
 
     const getUsageAndHandle = lazyValue<[CxModule$Usage, CxModule.Handle]>(() => {
 
-      const usage = new CxModule$Usage(target.context, this);
+      const usage = new CxModule$Usage(target, this);
 
       return [usage, usage.createHandle()];
     });
