@@ -1,0 +1,549 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>CxModule | IoC Context Builder</title>
+	<meta name="description" content="Documentation for IoC Context Builder">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">IoC Context Builder</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../modules.html">IoC Context Builder</a>
+				</li>
+				<li>
+					<a href="cxmodule.html">CxModule</a>
+				</li>
+			</ul>
+			<h1>Class CxModule</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Context module.</p>
+					</div>
+					<p>Modules intended to extend the context dynamically.</p>
+					<p>The module is a context entry that can be used to provide module instance and access its
+					<a href="../interfaces/cxmodule.handle.html">handle</a>.</p>
+					<p>Usage example:</p>
+					<pre><code class="language-typescript"><span style="color: #008000">// Construct new module.</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">myModule</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">CxModule</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;my module&#039;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">  </span><span style="color: #795E26">setup</span><span style="color: #000000">(</span><span style="color: #001080">setup</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Provide the values</span>
+<span style="color: #000000">    </span><span style="color: #001080">setup</span><span style="color: #000000">.</span><span style="color: #795E26">provide</span><span style="color: #000000">({ </span><span style="color: #001080">a:</span><span style="color: #000000"> </span><span style="color: #001080">Foo</span><span style="color: #000000">, </span><span style="color: #001080">is:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;foo&#039;</span><span style="color: #000000"> });</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #008000">// Load the module</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">myModuleSupply</span><span style="color: #000000"> = </span><span style="color: #001080">contextBuilder</span><span style="color: #000000">.</span><span style="color: #795E26">provide</span><span style="color: #000000">(</span><span style="color: #001080">myModule</span><span style="color: #000000">);</span>
+
+<span style="color: #008000">// Start using the module</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">myModuleUse</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">context</span><span style="color: #000000">.</span><span style="color: #795E26">get</span><span style="color: #000000">(</span><span style="color: #001080">myModule</span><span style="color: #000000">).</span><span style="color: #795E26">use</span><span style="color: #000000">();</span>
+
+<span style="color: #008000">// Await for the module to load</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">myModuleUse</span><span style="color: #000000">.</span><span style="color: #001080">whenReady</span><span style="color: #000000">;</span>
+
+<span style="color: #008000">// Access the value provided by module.</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">context</span><span style="color: #000000">.</span><span style="color: #795E26">get</span><span style="color: #000000">(</span><span style="color: #001080">Foo</span><span style="color: #000000">));</span>
+
+<span style="color: #008000">// Stop using the module</span>
+<span style="color: #001080">myModuleUse</span><span style="color: #000000">.</span><span style="color: #001080">supply</span><span style="color: #000000">.</span><span style="color: #795E26">off</span><span style="color: #000000">();</span>
+
+<span style="color: #008000">// Unload the module declaration.</span>
+<span style="color: #001080">myModuleSupply</span><span style="color: #000000">.</span><span style="color: #795E26">off</span><span style="color: #000000">();</span>
+</code></pre>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">CxModule</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/cxmodule.handle.html" class="tsd-signature-type" data-tsd-kind="Interface">Handle</a><span class="tsd-signature-symbol">, </span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><span class="tsd-signature-type">CxAsset</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/cxmodule.handle.html" class="tsd-signature-type" data-tsd-kind="Interface">Handle</a><span class="tsd-signature-symbol">, </span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="cxmodule.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="cxmodule.html#_cxmodule_impl__symbol_" class="tsd-kind-icon">[<wbr>CxModule$<wbr>Impl__symbol]</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="cxmodule.html#_tostringtag_" class="tsd-kind-icon">[to<wbr>String<wbr>Tag]</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="cxmodule.html#entry" class="tsd-kind-icon">entry</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="cxmodule.html#has" class="tsd-kind-icon">has</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="cxmodule.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="cxmodule.html#needs" class="tsd-kind-icon">needs</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cxmodule.html#percontext" class="tsd-kind-icon">per<wbr>Context</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cxmodule.html#placeasset" class="tsd-kind-icon">place<wbr>Asset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cxmodule.html#setup" class="tsd-kind-icon">setup</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cxmodule.html#setupasset" class="tsd-kind-icon">setup<wbr>Asset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cxmodule.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>CxModule<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/cxmodule.options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L50">proc7ts/context-modules/src/module.ts:50</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Constructs context module.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Human-readable module name.</p>
+									</div>
+								</li>
+								<li>
+									<h5>options: <a href="../interfaces/cxmodule.options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a><span class="tsd-signature-symbol"> = {}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Module construction options.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_cxmodule_impl__symbol_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> [<wbr>CxModule$<wbr>Impl__symbol]</h3>
+					<div class="tsd-signature tsd-kind-icon">[<wbr>CxModule$<wbr>Impl__symbol]<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CxModule$Impl</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L50">proc7ts/context-modules/src/module.ts:50</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>internal</dt>
+							<dd></dd>
+						</dl>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="_tostringtag_" class="tsd-anchor"></a>
+					<h3>[to<wbr>String<wbr>Tag]</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> [toStringTag]<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L69">proc7ts/context-modules/src/module.ts:69</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="entry" class="tsd-anchor"></a>
+					<h3>entry</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> entry<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L73">proc7ts/context-modules/src/module.ts:73</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="has" class="tsd-anchor"></a>
+					<h3>has</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> has<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReadonlySet</span><span class="tsd-signature-symbol">&lt;</span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L93">proc7ts/context-modules/src/module.ts:93</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The modules this one provides.</p>
+								</div>
+								<p>Assigned by <a href="../interfaces/cxmodule.options.html#has">CxModule.Options.has</a> option.</p>
+								<p>Always contains the module itself.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReadonlySet</span><span class="tsd-signature-symbol">&lt;</span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L65">proc7ts/context-modules/src/module.ts:65</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Human-readable module name.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="needs" class="tsd-anchor"></a>
+					<h3>needs</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> needs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReadonlySet</span><span class="tsd-signature-symbol">&lt;</span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L82">proc7ts/context-modules/src/module.ts:82</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The modules this one requires.</p>
+								</div>
+								<p>Assigned by <a href="../interfaces/cxmodule.options.html#needs">CxModule.Options.needs</a> option.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReadonlySet</span><span class="tsd-signature-symbol">&lt;</span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="percontext" class="tsd-anchor"></a>
+					<h3>per<wbr>Context</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">per<wbr>Context<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Target</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/cxmodule.handle.html" class="tsd-signature-type" data-tsd-kind="Interface">Handle</a><span class="tsd-signature-symbol">, </span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CxValues</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Definition</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/cxmodule.handle.html" class="tsd-signature-type" data-tsd-kind="Interface">Handle</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of CxEntry.perContext</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L97">proc7ts/context-modules/src/module.ts:97</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">Target</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/cxmodule.handle.html" class="tsd-signature-type" data-tsd-kind="Interface">Handle</a><span class="tsd-signature-symbol">, </span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CxValues</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Definition</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/cxmodule.handle.html" class="tsd-signature-type" data-tsd-kind="Interface">Handle</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="placeasset" class="tsd-anchor"></a>
+					<h3>place<wbr>Asset</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">place<wbr>Asset<span class="tsd-signature-symbol">(</span>_target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Target</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/cxmodule.handle.html" class="tsd-signature-type" data-tsd-kind="Interface">Handle</a><span class="tsd-signature-symbol">, </span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CxValues</span><span class="tsd-signature-symbol">&gt;</span>, collector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Collector</span><span class="tsd-signature-symbol">&lt;</span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of CxAsset.placeAsset</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L125">proc7ts/context-modules/src/module.ts:125</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>_target: <span class="tsd-signature-type">Target</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/cxmodule.handle.html" class="tsd-signature-type" data-tsd-kind="Interface">Handle</a><span class="tsd-signature-symbol">, </span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CxValues</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>collector: <span class="tsd-signature-type">Collector</span><span class="tsd-signature-symbol">&lt;</span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setup" class="tsd-anchor"></a>
+					<h3>setup</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">setup<span class="tsd-signature-symbol">(</span>setup<span class="tsd-signature-symbol">: </span><a href="../interfaces/cxmodule.setup.html" class="tsd-signature-type" data-tsd-kind="Interface">Setup</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L161">proc7ts/context-modules/src/module.ts:161</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets up the module.</p>
+								</div>
+								<p>This method is called when loading the module. It is used e.g. to provide more values for the context.</p>
+								<p>By default:</p>
+								<ol>
+									<li><p>Satisfies module <a href="cxmodule.html#needs">dependencies</a> by setting them up.</p>
+										<p>The dependency considered satisfied when it is <a href="../interfaces/cxmodule.status.html#settled">settled</a>.</p>
+									</li>
+									<li><p><a href="../interfaces/cxmodule.setup.html#initby">Initializes</a> the module by initializing the dependencies.</p>
+										<p>The dependency considered initialized when it is <a href="../interfaces/cxmodule.status.html#ready">ready for use</a>.</p>
+									</li>
+									<li><p>Performs the module setup by invoking the <a href="../interfaces/cxmodule.options.html#setup">CxModule.Options.setup</a> method.</p>
+									</li>
+								</ol>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>setup: <a href="../interfaces/cxmodule.setup.html" class="tsd-signature-type" data-tsd-kind="Interface">Setup</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Context module setup.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise resolved when the module is set up asynchronously.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setupasset" class="tsd-anchor"></a>
+					<h3>setup<wbr>Asset</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">setup<wbr>Asset<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Target</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/cxmodule.handle.html" class="tsd-signature-type" data-tsd-kind="Interface">Handle</a><span class="tsd-signature-symbol">, </span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CxValues</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of CxAsset.setupAsset</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L132">proc7ts/context-modules/src/module.ts:132</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">Target</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/cxmodule.handle.html" class="tsd-signature-type" data-tsd-kind="Interface">Handle</a><span class="tsd-signature-symbol">, </span><a href="cxmodule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CxValues</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of CxEntry.toString</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/da1ded0/src/module.ts#L165">proc7ts/context-modules/src/module.ts:165</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="cxdependencyerror.html" class="tsd-kind-icon">Cx<wbr>Dependency<wbr>Error</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="cxmodule.html" class="tsd-kind-icon">Cx<wbr>Module</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="cxmodule.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="cxmodule.html#_cxmodule_impl__symbol_" class="tsd-kind-icon">[<wbr>CxModule$<wbr>Impl__symbol]</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="cxmodule.html#_tostringtag_" class="tsd-kind-icon">[to<wbr>String<wbr>Tag]</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="cxmodule.html#entry" class="tsd-kind-icon">entry</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="cxmodule.html#has" class="tsd-kind-icon">has</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="cxmodule.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="cxmodule.html#needs" class="tsd-kind-icon">needs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cxmodule.html#percontext" class="tsd-kind-icon">per<wbr>Context</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cxmodule.html#placeasset" class="tsd-kind-icon">place<wbr>Asset</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cxmodule.html#setup" class="tsd-kind-icon">setup</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cxmodule.html#setupasset" class="tsd-kind-icon">setup<wbr>Asset</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cxmodule.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
