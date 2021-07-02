@@ -18,12 +18,17 @@ describe('CxDependencyError', () => {
           'Failed to load [CxModule test]: '
           + '[CxModule dep1] not loaded, [CxModule dep2] failed to load (reason 2)',
       );
+      expect(String(error)).toBe(
+          'CxDependencyError: Failed to load [CxModule test]: '
+          + '[CxModule dep1] not loaded, [CxModule dep2] failed to load (reason 2)',
+      );
     });
     it('reflects no reasons', () => {
 
       const error = new CxDependencyError(new CxModule('test'));
 
       expect(error.message).toBe('Failed to load [CxModule test]');
+      expect(String(error)).toBe('CxDependencyError: Failed to load [CxModule test]');
     });
   });
 });

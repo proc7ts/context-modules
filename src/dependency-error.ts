@@ -3,7 +3,7 @@ import type { CxModule } from './module';
 /**
  * An error indicating context module dependency load failure.
  */
-export class CxDependencyError extends Error {
+export class CxDependencyError extends ReferenceError {
 
   /**
    * Constructs context module dependency load error.
@@ -18,6 +18,10 @@ export class CxDependencyError extends Error {
       message: string = CxDependencyError$defaultMessage(module, reasons),
   ) {
     super(message);
+  }
+
+  override get name(): string {
+    return 'CxDependencyError';
   }
 
 }
