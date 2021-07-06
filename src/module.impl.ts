@@ -65,24 +65,27 @@ export function CxModule$implement(
 
     const receive = sendEventsTo(receiver);
 
-    target.trackAssetList(candidates => {
+    target.trackAssetList(
+        candidates => {
 
-      let impl: CxModule | undefined;
+          let impl: CxModule | undefined;
 
-      for (let i = candidates.length - 1; i >= 0; --i) {
+          for (let i = candidates.length - 1; i >= 0; --i) {
 
-        const recent = candidates[i].recentAsset;
+            const recent = candidates[i].recentAsset;
 
-        if (recent) {
-          impl = recent.asset;
-          if (impl !== module) {
-            break;
+            if (recent) {
+              impl = recent.asset;
+              if (impl !== module) {
+                break;
+              }
+            }
           }
-        }
-      }
 
-      receive(impl);
-    }).needs(receiver.supply);
+          receive(impl);
+        },
+        receiver.supply,
+    );
   });
 }
 
