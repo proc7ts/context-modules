@@ -42,7 +42,7 @@ import { CxModule$Usage } from './module.usage.impl';
  * myModuleSupply.off();
  * ```
  */
-export class CxModule implements CxEntry<CxModule.Handle, CxModule>, CxAsset<CxModule.Handle, CxModule> {
+export class CxModule implements CxEntry<CxModule.Handle, CxModule>, CxAsset.Placer<CxModule.Handle, CxModule> {
 
   /**
    * @internal
