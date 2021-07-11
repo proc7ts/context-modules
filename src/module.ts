@@ -229,7 +229,7 @@ export namespace CxModule {
     /**
      * Provides assets for context {@link CxAsset.entry entry}.
      *
-     * The asset will be revoked automatically once the module is unloaded.
+     * All assets provided by this method will be revoked once the module unloaded.
      *
      * @param asset - Context entry asset.
      *
