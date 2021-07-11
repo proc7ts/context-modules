@@ -1,6 +1,6 @@
 {
   "entryPoints": ["src/index.ts"],
-  "name": "IoC Context Builder",
+  "name": "IoC Context Modules",
   "out": "./target/typedoc",
   "tsconfig": "tsconfig.main.json"
 }
