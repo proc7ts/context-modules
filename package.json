@@ -1,6 +1,6 @@
 {
   "name": "@proc7ts/context-modules",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "Dynamically loadable IoC context modules",
   "keywords": [
     "ioc"
