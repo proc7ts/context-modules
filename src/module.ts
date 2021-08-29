@@ -180,7 +180,7 @@ export namespace CxModule {
      *
      * The listed modules will be loaded prior to loading the constructed one.
      */
-    readonly needs?: CxModule | readonly CxModule[];
+    readonly needs?: CxModule | readonly CxModule[] | undefined;
 
     /**
      * A module or modules the constructed one provides.
@@ -189,7 +189,7 @@ export namespace CxModule {
      *
      * The module always provides itself.
      */
-    readonly has?: CxModule | readonly CxModule[];
+    readonly has?: CxModule | readonly CxModule[] | undefined;
 
     /**
      * Sets up constructed module.
@@ -379,7 +379,7 @@ export namespace CxModule {
     /**
      * Error occurred while loading the module.
      */
-    readonly error?: unknown;
+    readonly error?: unknown | undefined;
 
   }
 
