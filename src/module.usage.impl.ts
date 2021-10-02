@@ -85,6 +85,7 @@ export class CxModule$Usage {
         CxModule$load(target, rev)
             .then(({ whenReady }) => {
               this._updateStatus(rev, true, false);
+
               return whenReady;
             })
             .then(() => this._updateStatus(rev, true, true))
