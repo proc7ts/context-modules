@@ -1,489 +1,57 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Setup | IoC Context Modules</title>
-	<meta name="description" content="Documentation for IoC Context Modules">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../assets/css/main.css">
-	<script async src="../assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="../index.html" class="title">IoC Context Modules</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="../modules.html">IoC Context Modules</a>
-				</li>
-				<li>
-					<a href="../modules/CxModule.html">CxModule</a>
-				</li>
-				<li>
-					<a href="CxModule.Setup.html">Setup</a>
-				</li>
-			</ul>
-			<h1>Interface Setup</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Context module setup.</p>
-					</div>
-					<p>Passed to <a href="../classes/CxModule.html#setup">module setup method</a> in order to access and provide the necessary values.</p>
-					<dl class="tsd-comment-tags">
-						<dt>typeparam</dt>
-						<dd><p>Target context type.</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="tsd-signature-type">CxValues</span>
-					</li>
-					<li>
-						<span class="tsd-signature-type">CxModifier</span>
-					</li>
-					<li>
-						<span class="tsd-signature-type">SupplyPeer</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">Setup</span>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="CxModule.Setup.html#context" class="tsd-kind-icon">context</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="CxModule.Setup.html#module" class="tsd-kind-icon">module</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="CxModule.Setup.html#supply" class="tsd-kind-icon">supply</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><a href="CxModule.Setup.html#get" class="tsd-kind-icon">get</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="CxModule.Setup.html#initBy" class="tsd-kind-icon">init<wbr>By</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-overwrite"><a href="CxModule.Setup.html#provide" class="tsd-kind-icon">provide</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="context" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> context</h3>
-					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CxValues</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from CxModifier.context</p>
-						<ul>
-							<li>Defined in proc7ts/context-values/index.d.ts:440</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Modified context.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="module" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> module</h3>
-					<div class="tsd-signature tsd-kind-icon">module<span class="tsd-signature-symbol">:</span> <a href="../classes/CxModule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/2091d7e/src/module.ts#L220">proc7ts/context-modules/src/module.ts:220</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The module to set up.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-					<a name="supply" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> supply</h3>
-					<div class="tsd-signature tsd-kind-icon">supply<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Supply</span></div>
-					<aside class="tsd-sources">
-						<p>Overrides SupplyPeer.supply</p>
-						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/2091d7e/src/module.ts#L227">proc7ts/context-modules/src/module.ts:227</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Module supply.</p>
-						</div>
-						<p>This supply will be cut off once the module is unloaded.</p>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited">
-					<a name="get" class="tsd-anchor"></a>
-					<h3>get</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">get&lt;TValue&gt;<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span>, request<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">WithoutFallback</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TValue</span></li>
-						<li class="tsd-signature tsd-kind-icon">get&lt;TValue&gt;<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span>, request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">WithFallback</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TValue</span></li>
-						<li class="tsd-signature tsd-kind-icon">get&lt;TValue&gt;<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span>, request<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">CxRequest</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TValue</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from CxValues.get</p>
-								<ul>
-									<li>Defined in proc7ts/context-values/index.d.ts:165</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Obtains value of the given context entry.</p>
-								</div>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>TValue</h4>
-									<div class="tsd-comment tsd-typography">
-										<p>Requested context value type.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>entry: <span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Context entry to obtain the value of.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> request: <span class="tsd-signature-type">WithoutFallback</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Context value request with fallback specified.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TValue</span></h4>
-							<p>Either context entry value, or a fallback one.</p>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from CxValues.get</p>
-								<ul>
-									<li>Defined in proc7ts/context-values/index.d.ts:175</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Obtains value of the given context entry, or returns a non-nullable fallback.</p>
-								</div>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>TValue</h4>
-									<div class="tsd-comment tsd-typography">
-										<p>Requested context value type.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>entry: <span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Context entry to obtain the value of.</p>
-									</div>
-								</li>
-								<li>
-									<h5>request: <span class="tsd-signature-type">WithFallback</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Context value request with fallback specified.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TValue</span></h4>
-							<p>Either context entry value, or a fallback one.</p>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from CxValues.get</p>
-								<ul>
-									<li>Defined in proc7ts/context-values/index.d.ts:187</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Obtains value of the given context entry, or returns a nullable fallback.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>throws</dt>
-									<dd><p>CxReferenceError - If the target <code>entry</code> has no value and fallback one is not provided.</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>TValue</h4>
-									<div class="tsd-comment tsd-typography">
-										<p>Requested context value type.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>entry: <span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Context entry to obtain the value of.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> request: <span class="tsd-signature-type">CxRequest</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Context value request.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TValue</span></h4>
-							<p>Either context entry value, or a fallback one.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="initBy" class="tsd-anchor"></a>
-					<h3>init<wbr>By</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">init<wbr>By<span class="tsd-signature-symbol">(</span>init<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/2091d7e/src/module.ts#L256">proc7ts/context-modules/src/module.ts:256</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Registers the module initializer.</p>
-								</div>
-								<p>The module initializer registration is only valid during its <a href="../classes/CxModule.html#setup">setup</a>.</p>
-								<p>The registered initializers executed after successful module <a href="../classes/CxModule.html#setup">CxModule.setup</a>. The modules
-								is considered <a href="CxModule.Status.html#ready">ready for use</a> only when all registered initializers succeed.</p>
-								<p>The registered initializers executed serially. I.e. then next one does not start until the previous one succeeds.</p>
-								<p>It is an error calling this method when the module initialized already.</p>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>init: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The module initialization function, that returns nothing when the module initialization
-											completed synchronously, or a promise-like instance resolved when the module initialization completed
-										asynchronously.</p>
-									</div>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-signature">
-											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-overwrite">
-					<a name="provide" class="tsd-anchor"></a>
-					<h3>provide</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">provide&lt;TValue, TAsset&gt;<span class="tsd-signature-symbol">(</span>asset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CxAsset</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TAsset</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CxValues</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Supply</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Overrides CxModifier.provide</p>
-								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/2091d7e/src/module.ts#L238">proc7ts/context-modules/src/module.ts:238</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Provides assets for context {@link CxAsset.entry entry}.</p>
-								</div>
-								<p>All assets provided by this method will be revoked once the module unloaded.</p>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>TValue</h4>
-								</li>
-								<li>
-									<h4>TAsset = <span class="tsd-signature-type">TValue</span></h4>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>asset: <span class="tsd-signature-type">CxAsset</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TAsset</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CxValues</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Context entry asset.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Supply</span></h4>
-							<p>Assets supply. Revokes provided assets once cut off.</p>
-						</li>
-					</ul>
-				</section>
-			</section>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="../modules.html">Exports</a>
-					</li>
-					<li class="current tsd-kind-namespace">
-						<a href="../modules/CxModule.html">Cx<wbr>Module</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="CxModule.Handle.html" class="tsd-kind-icon">Handle</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="CxModule.Options.html" class="tsd-kind-icon">Options</a>
-					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="CxModule.Setup.html" class="tsd-kind-icon">Setup</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="CxModule.Setup.html#context" class="tsd-kind-icon">context</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="CxModule.Setup.html#module" class="tsd-kind-icon">module</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="CxModule.Setup.html#supply" class="tsd-kind-icon">supply</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited">
-								<a href="CxModule.Setup.html#get" class="tsd-kind-icon">get</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="CxModule.Setup.html#initBy" class="tsd-kind-icon">init<wbr>By</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-overwrite">
-								<a href="CxModule.Setup.html#provide" class="tsd-kind-icon">provide</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="CxModule.Status.html" class="tsd-kind-icon">Status</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="CxModule.Use.html" class="tsd-kind-icon">Use</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="../assets/js/main.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Setup | IoC Context Modules</title><meta name="description" content="Documentation for IoC Context Modules"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script></head><body><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base=".."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="../index.html" class="title">IoC Context Modules</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><ul class="tsd-breadcrumb"><li><a href="../modules.html">IoC Context Modules</a></li><li><a href="../modules/CxModule.html">CxModule</a></li><li><a href="CxModule.Setup.html">Setup</a></li></ul><h1>Interface Setup</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Context module setup.</p>
+</div><div><p>Passed to <a href="../classes/CxModule.html#setup">module setup method</a> in order to access and provide the necessary values.</p>
+</div><dl class="tsd-comment-tags"><dt>typeparam TCtx</dt><dd><p>Target context type.</p>
+</dd></dl></div></section><section class="tsd-panel tsd-hierarchy"><h3>Hierarchy</h3><ul class="tsd-hierarchy"><li><span class="tsd-signature-type">CxValues</span></li><li><span class="tsd-signature-type">CxModifier</span></li><li><span class="tsd-signature-type">SupplyPeer</span><ul class="tsd-hierarchy"><li><span class="target">Setup</span></li></ul></li></ul></section><section class="tsd-panel-group tsd-index-group"><h2>Index</h2><section class="tsd-panel tsd-index-panel"><div class="tsd-index-content"><section class="tsd-index-section "><h3>Properties</h3><ul class="tsd-index-list"><li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="CxModule.Setup.html#context" class="tsd-kind-icon">context</a></li><li class="tsd-kind-property tsd-parent-kind-interface"><a href="CxModule.Setup.html#module" class="tsd-kind-icon">module</a></li><li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="CxModule.Setup.html#supply" class="tsd-kind-icon">supply</a></li></ul></section><section class="tsd-index-section "><h3>Methods</h3><ul class="tsd-index-list"><li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><a href="CxModule.Setup.html#get" class="tsd-kind-icon">get</a></li><li class="tsd-kind-method tsd-parent-kind-interface"><a href="CxModule.Setup.html#initBy" class="tsd-kind-icon">init<wbr/>By</a></li><li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-overwrite"><a href="CxModule.Setup.html#provide" class="tsd-kind-icon">provide</a></li></ul></section></div></section></section><section class="tsd-panel-group tsd-member-group "><h2>Properties</h2><section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a name="context" class="tsd-anchor"></a><h3><span class="tsd-flag ts-flagReadonly">Readonly</span> context</h3><div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CxValues</span></div><aside class="tsd-sources"><p>Inherited from CxModifier.context</p><ul><li>Defined in proc7ts/context-values/index.d.ts:440</li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Modified context.</p>
+</div></div></section><section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"><a name="module" class="tsd-anchor"></a><h3><span class="tsd-flag ts-flagReadonly">Readonly</span> module</h3><div class="tsd-signature tsd-kind-icon">module<span class="tsd-signature-symbol">:</span> <a href="../classes/CxModule.html" class="tsd-signature-type" data-tsd-kind="Class">CxModule</a></div><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/14621d6/src/module.ts#L220">proc7ts/context-modules/src/module.ts:220</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>The module to set up.</p>
+</div></div></section><section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a name="supply" class="tsd-anchor"></a><h3><span class="tsd-flag ts-flagReadonly">Readonly</span> supply</h3><div class="tsd-signature tsd-kind-icon">supply<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Supply</span></div><aside class="tsd-sources"><p>Overrides SupplyPeer.supply</p><ul><li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/14621d6/src/module.ts#L227">proc7ts/context-modules/src/module.ts:227</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Module supply.</p>
+</div><div><p>This supply will be cut off once the module is unloaded.</p>
+</div></div></section></section><section class="tsd-panel-group tsd-member-group "><h2>Methods</h2><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><a name="get" class="tsd-anchor"></a><h3>get</h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><li class="tsd-signature tsd-kind-icon">get&lt;TValue&gt;<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span>, request<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">WithoutFallback</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span></li><li class="tsd-signature tsd-kind-icon">get&lt;TValue&gt;<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span>, request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">WithFallback</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span></li><li class="tsd-signature tsd-kind-icon">get&lt;TValue&gt;<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span>, request<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">CxRequest</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><p>Inherited from CxValues.get</p><ul><li>Defined in proc7ts/context-values/index.d.ts:165</li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Obtains value of the given context entry.</p>
+</div></div><h4 class="tsd-type-parameters-title">Type parameters</h4><ul class="tsd-type-parameters"><li><h4>TValue</h4><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Requested context value type.</p>
+</div></div></li></ul><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>entry: <span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Context entry to obtain the value of.</p>
+</div></div></li><li><h5><span class="tsd-flag ts-flagOptional">Optional</span> request: <span class="tsd-signature-type">WithoutFallback</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">&gt;</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Context value request with fallback specified.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span></h4><div><p>Either context entry value, or a fallback one.</p>
+</div></li><li class="tsd-description"><aside class="tsd-sources"><p>Inherited from CxValues.get</p><ul><li>Defined in proc7ts/context-values/index.d.ts:175</li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Obtains value of the given context entry, or returns a non-nullable fallback.</p>
+</div></div><h4 class="tsd-type-parameters-title">Type parameters</h4><ul class="tsd-type-parameters"><li><h4>TValue</h4><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Requested context value type.</p>
+</div></div></li></ul><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>entry: <span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Context entry to obtain the value of.</p>
+</div></div></li><li><h5>request: <span class="tsd-signature-type">WithFallback</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">&gt;</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Context value request with fallback specified.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span></h4><div><p>Either context entry value, or a fallback one.</p>
+</div></li><li class="tsd-description"><aside class="tsd-sources"><p>Inherited from CxValues.get</p><ul><li>Defined in proc7ts/context-values/index.d.ts:187</li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Obtains value of the given context entry, or returns a nullable fallback.</p>
+</div><dl class="tsd-comment-tags"><dt>throws</dt><dd><p>CxReferenceError - If the target <code>entry</code> has no value and fallback one is not provided.</p>
+</dd></dl></div><h4 class="tsd-type-parameters-title">Type parameters</h4><ul class="tsd-type-parameters"><li><h4>TValue</h4><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Requested context value type.</p>
+</div></div></li></ul><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>entry: <span class="tsd-signature-type">CxEntry</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Context entry to obtain the value of.</p>
+</div></div></li><li><h5><span class="tsd-flag ts-flagOptional">Optional</span> request: <span class="tsd-signature-type">CxRequest</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">&gt;</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Context value request.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span></h4><div><p>Either context entry value, or a fallback one.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a name="initBy" class="tsd-anchor"></a><h3>init<wbr/>By</h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface"><li class="tsd-signature tsd-kind-icon">init<wbr/>By<span class="tsd-signature-symbol">(</span>init<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/14621d6/src/module.ts#L256">proc7ts/context-modules/src/module.ts:256</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Registers the module initializer.</p>
+</div><div><p>The module initializer registration is only valid during its <a href="../classes/CxModule.html#setup">setup</a>.</p>
+<p>The registered initializers executed after successful module <a href="../classes/CxModule.html#setup">CxModule.setup</a>. The modules
+is considered <a href="CxModule.Status.html#ready">ready for use</a> only when all registered initializers succeed.</p>
+<p>The registered initializers executed serially. I.e. then next one does not start until the previous one succeeds.</p>
+<p>It is an error calling this method when the module initialized already.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>init: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>The module initialization function, that returns nothing when the module initialization
+completed synchronously, or a promise-like instance resolved when the module initialization completed
+asynchronously.</p>
+</div></div><ul class="tsd-parameters"><li class="tsd-parameter-signature"><ul class="tsd-signatures tsd-kind-type-literal"><li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></li></ul></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-overwrite"><a name="provide" class="tsd-anchor"></a><h3>provide</h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-overwrite"><li class="tsd-signature tsd-kind-icon">provide&lt;TValue, TAsset&gt;<span class="tsd-signature-symbol">(</span>asset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CxAsset</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TAsset</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CxValues</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Supply</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><p>Overrides CxModifier.provide</p><ul><li>Defined in <a href="https://github.com/proc7ts/context-modules/blob/14621d6/src/module.ts#L238">proc7ts/context-modules/src/module.ts:238</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Provides assets for context {@link CxAsset.entry entry}.</p>
+</div><div><p>All assets provided by this method will be revoked once the module unloaded.</p>
+</div></div><h4 class="tsd-type-parameters-title">Type parameters</h4><ul class="tsd-type-parameters"><li><h4>TValue</h4></li><li><h4>TAsset = <span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span></h4></li></ul><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>asset: <span class="tsd-signature-type">CxAsset</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TAsset</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CxValues</span><span class="tsd-signature-symbol">&gt;</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Context entry asset.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Supply</span></h4><div><p>Assets supply. Revokes provided assets once cut off.</p>
+</div></li></ul></section></section></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class=""><a href="../modules.html">Exports</a></li><li class="current tsd-kind-namespace"><a href="../modules/CxModule.html">Cx<wbr/>Module</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="current tsd-kind-interface tsd-parent-kind-namespace"><a href="CxModule.Setup.html" class="tsd-kind-icon">Setup</a><ul><li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="CxModule.Setup.html#context" class="tsd-kind-icon">context</a></li><li class="tsd-kind-property tsd-parent-kind-interface"><a href="CxModule.Setup.html#module" class="tsd-kind-icon">module</a></li><li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="CxModule.Setup.html#supply" class="tsd-kind-icon">supply</a></li><li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><a href="CxModule.Setup.html#get" class="tsd-kind-icon">get</a></li><li class="tsd-kind-method tsd-parent-kind-interface"><a href="CxModule.Setup.html#initBy" class="tsd-kind-icon">init<wbr/>By</a></li><li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-overwrite"><a href="CxModule.Setup.html#provide" class="tsd-kind-icon">provide</a></li></ul></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="../assets/main.js"></script></body></html>

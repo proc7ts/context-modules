@@ -1,193 +1,59 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IoC Context Modules</title>
-	<meta name="description" content="Documentation for IoC Context Modules">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">IoC Context Modules</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>IoC Context Modules</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#ioc-context-modules" id="ioc-context-modules" style="color: inherit; text-decoration: none;">
-					<h1>IoC Context Modules</h1>
-				</a>
-				<p><strong>Dynamically loadable <a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC</a> context modules conforming to <a href="https://www.npmjs.com/package/@proc7ts/context-values">@proc7ts/context-values</a> API</strong></p>
-				<p><a href="https://www.npmjs.com/package/@proc7ts/context-modules"><img src="https://img.shields.io/npm/v/@proc7ts/context-modules.svg?logo=npm" alt="NPM"></a>
-					<a href="https://github.com/proc7ts/context-modules/actions?query=workflow:Build"><img src="https://github.com/proc7ts/context-modules/workflows/Build/badge.svg" alt="Build Status"></a>
-					<a href="https://www.codacy.com/gh/proc7ts/context-modules/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=proc7ts/context-modules&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/2d46bc304056475881239a28a739fc93" alt="Code Quality"></a>
-					<a href="https://www.codacy.com/gh/proc7ts/context-modules/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=proc7ts/context-modules&amp;utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/2d46bc304056475881239a28a739fc93" alt="Coverage"></a>
-					<a href="https://github.com/proc7ts/context-modules"><img src="https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational" alt="GitHub Project"></a>
-				<a href="https://proc7ts.github.io/context-modules/"><img src="https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational" alt="API Documentation"></a></p>
-				<p>Context module can be used to provide multiple assets for <a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC</a> context at once. Unloading the module revokes all assets
-				provided by it.</p>
-				<p>Usage example:</p>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">CxModule</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@proc7ts/context-modules&#039;</span><span style="color: #000000">;</span>
-
-<span style="color: #008000">// Construct new module.</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">myModule</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">CxModule</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;my module&#039;</span><span style="color: #000000">, {</span>
-<span style="color: #000000">  </span><span style="color: #795E26">setup</span><span style="color: #000000">(</span><span style="color: #001080">setup</span><span style="color: #000000">) {</span>
-<span style="color: #000000">    </span><span style="color: #008000">// Provide assets for `Foo` entry.</span>
-<span style="color: #000000">    </span><span style="color: #001080">setup</span><span style="color: #000000">.</span><span style="color: #795E26">provide</span><span style="color: #000000">(</span><span style="color: #795E26">cxConstAsset</span><span style="color: #000000">(</span><span style="color: #001080">Foo</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;foo&#039;</span><span style="color: #000000">));</span>
-<span style="color: #000000">  },</span>
-<span style="color: #000000">});</span>
-
-<span style="color: #008000">// Add the module to context.</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">myModuleSupply</span><span style="color: #000000"> = </span><span style="color: #001080">cxBuilder</span><span style="color: #000000">.</span><span style="color: #795E26">provide</span><span style="color: #000000">(</span><span style="color: #001080">myModule</span><span style="color: #000000">);</span>
-
-<span style="color: #008000">// Start using the module.</span>
-<span style="color: #008000">// The first usage of the module loads it.</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">myModuleUse</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">context</span><span style="color: #000000">.</span><span style="color: #795E26">get</span><span style="color: #000000">(</span><span style="color: #001080">myModule</span><span style="color: #000000">).</span><span style="color: #795E26">use</span><span style="color: #000000">();</span>
-
-<span style="color: #008000">// Await for the module to load.</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">myModuleUse</span><span style="color: #000000">.</span><span style="color: #001080">whenReady</span><span style="color: #000000">;</span>
-
-<span style="color: #008000">// Access the value provided by module.</span>
-<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">context</span><span style="color: #000000">.</span><span style="color: #795E26">get</span><span style="color: #000000">(</span><span style="color: #001080">Foo</span><span style="color: #000000">)); </span><span style="color: #008000">// &#039;foo&#039;</span>
-
-<span style="color: #008000">// Stop using the module.</span>
-<span style="color: #008000">// Once tha last usage stopped, the module is unloaded.</span>
-<span style="color: #001080">myModuleUse</span><span style="color: #000000">.</span><span style="color: #001080">supply</span><span style="color: #000000">.</span><span style="color: #795E26">off</span><span style="color: #000000">();</span>
-
-<span style="color: #008000">// Revoke the module.</span>
-<span style="color: #001080">myModuleSupply</span><span style="color: #000000">.</span><span style="color: #795E26">off</span><span style="color: #000000">();</span>
+<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>IoC Context Modules</title><meta name="description" content="Documentation for IoC Context Modules"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">IoC Context Modules</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>IoC Context Modules</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#ioc-context-modules" id="ioc-context-modules" style="color: inherit; text-decoration: none;">
+  <h1>IoC Context Modules</h1>
+</a>
+<p><strong>Dynamically loadable <a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC</a> context modules conforming to <a href="https://www.npmjs.com/package/@proc7ts/context-values">@proc7ts/context-values</a> API</strong></p>
+<p><a href="https://www.npmjs.com/package/@proc7ts/context-modules"><img src="https://img.shields.io/npm/v/@proc7ts/context-modules.svg?logo=npm" alt="NPM"></a>
+<a href="https://github.com/proc7ts/context-modules/actions?query=workflow:Build"><img src="https://github.com/proc7ts/context-modules/workflows/Build/badge.svg" alt="Build Status"></a>
+<a href="https://www.codacy.com/gh/proc7ts/context-modules/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=proc7ts/context-modules&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/2d46bc304056475881239a28a739fc93" alt="Code Quality"></a>
+<a href="https://www.codacy.com/gh/proc7ts/context-modules/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=proc7ts/context-modules&amp;utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/2d46bc304056475881239a28a739fc93" alt="Coverage"></a>
+<a href="https://github.com/proc7ts/context-modules"><img src="https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational" alt="GitHub Project"></a>
+<a href="https://proc7ts.github.io/context-modules/"><img src="https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational" alt="API Documentation"></a></p>
+<p>Context module can be used to provide multiple assets for <a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC</a> context at once. Unloading the module revokes all assets
+provided by it.</p>
+<p>Usage example:</p>
+<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">CxModule</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@proc7ts/context-modules&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">// Construct new module.</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">myModule</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">CxModule</span><span class="hl-1">(</span><span class="hl-3">&#39;my module&#39;</span><span class="hl-1">, {</span><br/><span class="hl-1">  </span><span class="hl-7">setup</span><span class="hl-1">(</span><span class="hl-2">setup</span><span class="hl-1">) {</span><br/><span class="hl-1">    </span><span class="hl-4">// Provide assets for `Foo` entry.</span><br/><span class="hl-1">    </span><span class="hl-2">setup</span><span class="hl-1">.</span><span class="hl-7">provide</span><span class="hl-1">(</span><span class="hl-7">cxConstAsset</span><span class="hl-1">(</span><span class="hl-2">Foo</span><span class="hl-1">, </span><span class="hl-3">&#39;foo&#39;</span><span class="hl-1">));</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-4">// Add the module to context.</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">myModuleSupply</span><span class="hl-1"> = </span><span class="hl-2">cxBuilder</span><span class="hl-1">.</span><span class="hl-7">provide</span><span class="hl-1">(</span><span class="hl-2">myModule</span><span class="hl-1">);</span><br/><br/><span class="hl-4">// Start using the module.</span><br/><span class="hl-4">// The first usage of the module loads it.</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">myModuleUse</span><span class="hl-1"> = </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">context</span><span class="hl-1">.</span><span class="hl-7">get</span><span class="hl-1">(</span><span class="hl-2">myModule</span><span class="hl-1">).</span><span class="hl-7">use</span><span class="hl-1">();</span><br/><br/><span class="hl-4">// Await for the module to load.</span><br/><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">myModuleUse</span><span class="hl-1">.</span><span class="hl-2">whenReady</span><span class="hl-1">;</span><br/><br/><span class="hl-4">// Access the value provided by module.</span><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-7">log</span><span class="hl-1">(</span><span class="hl-2">context</span><span class="hl-1">.</span><span class="hl-7">get</span><span class="hl-1">(</span><span class="hl-2">Foo</span><span class="hl-1">)); </span><span class="hl-4">// &#39;foo&#39;</span><br/><br/><span class="hl-4">// Stop using the module.</span><br/><span class="hl-4">// Once tha last usage stopped, the module is unloaded.</span><br/><span class="hl-2">myModuleUse</span><span class="hl-1">.</span><span class="hl-2">supply</span><span class="hl-1">.</span><span class="hl-7">off</span><span class="hl-1">();</span><br/><br/><span class="hl-4">// Revoke the module.</span><br/><span class="hl-2">myModuleSupply</span><span class="hl-1">.</span><span class="hl-7">off</span><span class="hl-1">();</span>
 </code></pre>
-				<p>Context module&#39;s constructor accepts a human-readable module name, and options object.</p>
-				<p>The following options supported:</p>
-				<ul>
-					<li><p><code>needs</code> - A module or modules the constructed one requires.</p>
-						<p>The listed modules will be loaded prior to loading the constructed one.</p>
-					</li>
-					<li><p><code>has</code> - A module or modules the constructed one provides.</p>
-						<p>When specified, the constructed module will be loaded <em>instead</em> of the listed ones.</p>
-					</li>
-					<li><p><code>setup()</code> - A method that sets up constructed module.</p>
-						<p>May be synchronous or asynchronous.</p>
-						<p>Accepts a <code>CxModule.Setup</code> instance with the following properties:</p>
-						<ul>
-							<li><p><code>get()</code> - For accessing context values.</p>
-								<p>Inherited from <code>ContextValues</code> interface.</p>
-							</li>
-							<li><p><code>provide()</code> - For providing context entry assets.</p>
-								<p>The same as in <code>CxBuilder</code>.</p>
-								<p>All assets provided by this method will be revoked once the module unloaded.</p>
-							</li>
-							<li><p><code>initBy()</code> - For registering module initializers.</p>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<p>To use a module:</p>
-				<ol>
-					<li><p>Create its implementation.</p>
-					</li>
-					<li><p>Provide it by <code>CxBuilder.provide(module)</code> call.</p>
-					</li>
-					<li><p>Obtain its handle from context by calling <code>CxValues.get(module)</code>.</p>
-					</li>
-					<li><p>Start using it by calling the <code>.use()</code> method of obtained module handle.</p>
-					</li>
-					<li><p>Wait for the module to load and become ready to use: <code>await use.whenReady</code>.</p>
-					</li>
-					<li><p>When no longer needed, cut off the module use supply: <code>use.supply.off()</code>.</p>
-						<p>The module will be unloaded once no longer uses remain.</p>
-						<p>Note that the module can be in use indirectly when required by another one.</p>
-					</li>
-				</ol>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Exports</a>
-					</li>
-					<li class=" tsd-kind-namespace">
-						<a href="modules/CxModule.html">Cx<wbr>Module</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="classes/CxDependencyError.html" class="tsd-kind-icon">Cx<wbr>Dependency<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/CxModule.html" class="tsd-kind-icon">Cx<wbr>Module</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+<p>Context module&#39;s constructor accepts a human-readable module name, and options object.</p>
+<p>The following options supported:</p>
+<ul>
+<li><p><code>needs</code> - A module or modules the constructed one requires.</p>
+<p>The listed modules will be loaded prior to loading the constructed one.</p>
+</li>
+<li><p><code>has</code> - A module or modules the constructed one provides.</p>
+<p>When specified, the constructed module will be loaded <em>instead</em> of the listed ones.</p>
+</li>
+<li><p><code>setup()</code> - A method that sets up constructed module.</p>
+<p>May be synchronous or asynchronous.</p>
+<p>Accepts a <code>CxModule.Setup</code> instance with the following properties:</p>
+<ul>
+<li><p><code>get()</code> - For accessing context values.</p>
+<p>Inherited from <code>ContextValues</code> interface.</p>
+</li>
+<li><p><code>provide()</code> - For providing context entry assets.</p>
+<p>The same as in <code>CxBuilder</code>.</p>
+<p>All assets provided by this method will be revoked once the module unloaded.</p>
+</li>
+<li><p><code>initBy()</code> - For registering module initializers.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>To use a module:</p>
+<ol>
+<li><p>Create its implementation.</p>
+</li>
+<li><p>Provide it by <code>CxBuilder.provide(module)</code> call.</p>
+</li>
+<li><p>Obtain its handle from context by calling <code>CxValues.get(module)</code>.</p>
+</li>
+<li><p>Start using it by calling the <code>.use()</code> method of obtained module handle.</p>
+</li>
+<li><p>Wait for the module to load and become ready to use: <code>await use.whenReady</code>.</p>
+</li>
+<li><p>When no longer needed, cut off the module use supply: <code>use.supply.off()</code>.</p>
+<p>The module will be unloaded once no longer uses remain.</p>
+<p>Note that the module can be in use indirectly when required by another one.</p>
+</li>
+</ol>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li><li class=" tsd-kind-namespace"><a href="modules/CxModule.html">Cx<wbr/>Module</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/CxDependencyError.html" class="tsd-kind-icon">Cx<wbr/>Dependency<wbr/>Error</a></li><li class="tsd-kind-class"><a href="classes/CxModule.html" class="tsd-kind-icon">Cx<wbr/>Module</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
