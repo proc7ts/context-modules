@@ -1,5 +1,4 @@
-IoC Context Modules
-===================
+# IoC Context Modules
 
 **Dynamically loadable [IoC] context modules conforming to [@proc7ts/context-values] API**
 
@@ -25,7 +24,7 @@ provided by it.
 [github-url]: https://github.com/proc7ts/context-modules
 [api-docs-image]: https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational
 [api-docs-url]: https://proc7ts.github.io/context-modules/
-[IoC]: https://en.wikipedia.org/wiki/Inversion_of_control
+[ioc]: https://en.wikipedia.org/wiki/Inversion_of_control
 [@proc7ts/context-values]: https://www.npmjs.com/package/@proc7ts/context-values
 
 Usage example:
