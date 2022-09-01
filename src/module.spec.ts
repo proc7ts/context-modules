@@ -7,7 +7,6 @@ import { CxDependencyError } from './dependency-error';
 import { CxModule } from './module';
 
 describe('CxModule', () => {
-
   const entry1: CxEntry<number> = { perContext: cxRecent({ byDefault: () => 1 }) };
   const entry2: CxEntry<number> = { perContext: cxRecent({ byDefault: () => 2 }) };
 
@@ -20,7 +19,6 @@ describe('CxModule', () => {
   });
 
   it('makes module handle available before it is provided', async () => {
-
     const module = new CxModule('test');
 
     builder.provide(cxBuildAsset(module, () => null));
@@ -43,15 +41,11 @@ describe('CxModule', () => {
     });
   });
   it('provides value when loaded', async () => {
-
-    const module = new CxModule(
-        'test',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-          },
-        },
-    );
+    const module = new CxModule('test', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+      },
+    });
     const supply = builder.provide(module);
 
     expect(context.get(entry1)).toBe(1);
@@ -83,19 +77,15 @@ describe('CxModule', () => {
     });
   });
   it('provides value by initializer', async () => {
-
     const resolver = newPromiseResolver();
-    const module = new CxModule(
-        'test',
-        {
-          setup(setup) {
-            setup.initBy(async () => {
-              await resolver.promise();
-              setup.provide(cxConstAsset(entry1, 101));
-            });
-          },
-        },
-    );
+    const module = new CxModule('test', {
+      setup(setup) {
+        setup.initBy(async () => {
+          await resolver.promise();
+          setup.provide(cxConstAsset(entry1, 101));
+        });
+      },
+    });
     const supply = builder.provide(module);
 
     expect(context.get(entry1)).toBe(1);
@@ -137,21 +127,17 @@ describe('CxModule', () => {
     });
   });
   it('provides value by initializer inside initializer', async () => {
-
     const resolver = newPromiseResolver();
-    const module = new CxModule(
-        'test',
-        {
-          setup(setup) {
-            setup.initBy(() => {
-              setup.initBy(async () => {
-                await resolver.promise();
-                setup.provide(cxConstAsset(entry1, 101));
-              });
-            });
-          },
-        },
-    );
+    const module = new CxModule('test', {
+      setup(setup) {
+        setup.initBy(() => {
+          setup.initBy(async () => {
+            await resolver.promise();
+            setup.provide(cxConstAsset(entry1, 101));
+          });
+        });
+      },
+    });
     const supply = builder.provide(module);
 
     expect(context.get(entry1)).toBe(1);
@@ -193,17 +179,15 @@ describe('CxModule', () => {
     });
   });
   it('loaded once', async () => {
-
-    const entry: CxEntry<readonly number[], number> = { perContext: cxDynamic({ byDefault: () => [0] }) };
-    const module = new CxModule(
-        'test',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry, 1));
-            setup.provide(cxConstAsset(entry, 2));
-          },
-        },
-    );
+    const entry: CxEntry<readonly number[], number> = {
+      perContext: cxDynamic({ byDefault: () => [0] }),
+    };
+    const module = new CxModule('test', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry, 1));
+        setup.provide(cxConstAsset(entry, 2));
+      },
+    });
     const supply1 = builder.provide(module);
     const supply2 = builder.provide(module);
 
@@ -240,15 +224,11 @@ describe('CxModule', () => {
     });
   });
   it('never loaded when user supply is cut off', async () => {
-
-    const module = new CxModule(
-        'test',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-          },
-        },
-    );
+    const module = new CxModule('test', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+      },
+    });
 
     builder.provide(module);
 
@@ -267,15 +247,11 @@ describe('CxModule', () => {
     expect(context.get(entry1)).toBe(1);
   });
   it('unloaded when no more users', async () => {
-
-    const module = new CxModule(
-        'test',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-          },
-        },
-    );
+    const module = new CxModule('test', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+      },
+    });
 
     builder.provide(module);
 
@@ -294,17 +270,13 @@ describe('CxModule', () => {
     expect(context.get(entry1)).toBe(1);
   });
   it('reports load failure', async () => {
-
     const error = new Error('test');
-    const module = new CxModule(
-        'test',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-            throw error;
-          },
-        },
-    );
+    const module = new CxModule('test', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+        throw error;
+      },
+    });
 
     builder.provide(module);
 
@@ -323,19 +295,15 @@ describe('CxModule', () => {
     });
   });
   it('reports init failure', async () => {
-
     const error = new Error('test');
-    const module = new CxModule(
-        'test',
-        {
-          setup(setup) {
-            setup.initBy(() => {
-              setup.provide(cxConstAsset(entry1, 101));
-              throw error;
-            });
-          },
-        },
-    );
+    const module = new CxModule('test', {
+      setup(setup) {
+        setup.initBy(() => {
+          setup.provide(cxConstAsset(entry1, 101));
+          throw error;
+        });
+      },
+    });
 
     builder.provide(module);
 
@@ -354,28 +322,25 @@ describe('CxModule', () => {
     });
   });
   it('rejects initializer when initialization complete', async () => {
-
     const whenInit = newPromiseResolver();
     const afterInit = newPromiseResolver();
-    const module = new CxModule(
-        'test',
-        {
-          setup(setup) {
-            setup.initBy(() => {
+    const module = new CxModule('test', {
+      setup(setup) {
+        setup.initBy(() => {
+          const result = Promise.resolve();
 
-              const result = Promise.resolve();
+          // eslint-disable-next-line jest/valid-expect-in-promise
+          afterInit.resolve(
+            result.then(async () => {
+              await whenInit.promise();
+              setup.initBy(noop);
+            }),
+          );
 
-              // eslint-disable-next-line jest/valid-expect-in-promise
-              afterInit.resolve(result.then(async () => {
-                await whenInit.promise();
-                setup.initBy(noop);
-              }));
-
-              return result;
-            });
-          },
-        },
-    );
+          return result;
+        });
+      },
+    });
 
     builder.provide(module);
 
@@ -385,28 +350,22 @@ describe('CxModule', () => {
     const error: Error = await afterInit.promise().catch(asis);
 
     expect(error).toBeInstanceOf(TypeError);
-    expect(error.message).toBe('[CxModule test] initialized already, and does not accept new initializers');
-
+    expect(error.message).toBe(
+      '[CxModule test] initialized already, and does not accept new initializers',
+    );
   });
   it('loads dependency', async () => {
-
-    const dep = new CxModule(
-        'dep',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-          },
-        },
-    );
-    const module = new CxModule(
-        'test',
-        {
-          needs: dep,
-          setup(setup) {
-            setup.provide(cxConstAsset(entry2, 102));
-          },
-        },
-    );
+    const dep = new CxModule('dep', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+      },
+    });
+    const module = new CxModule('test', {
+      needs: dep,
+      setup(setup) {
+        setup.provide(cxConstAsset(entry2, 102));
+      },
+    });
     const supply = builder.provide(module);
 
     expect(context.get(entry1)).toBe(1);
@@ -434,24 +393,17 @@ describe('CxModule', () => {
     });
   });
   it('handles preliminary module unload', async () => {
-
-    const dep = new CxModule(
-        'dep',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-          },
-        },
-    );
-    const module = new CxModule(
-        'test',
-        {
-          needs: dep,
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 201));
-          },
-        },
-    );
+    const dep = new CxModule('dep', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+      },
+    });
+    const module = new CxModule('test', {
+      needs: dep,
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 201));
+      },
+    });
     const supply = builder.provide(module);
 
     expect(context.get(entry1)).toBe(1);
@@ -470,24 +422,17 @@ describe('CxModule', () => {
     expect(context.get(entry1)).toBe(1);
   });
   it('handles preliminary module deactivation', async () => {
-
-    const dep = new CxModule(
-        'dep',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-          },
-        },
-    );
-    const module = new CxModule(
-        'test',
-        {
-          needs: dep,
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 201));
-          },
-        },
-    );
+    const dep = new CxModule('dep', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+      },
+    });
+    const module = new CxModule('test', {
+      needs: dep,
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 201));
+      },
+    });
 
     builder.provide(module);
 
@@ -509,24 +454,17 @@ describe('CxModule', () => {
     expect(context.get(entry1)).toBe(1);
   });
   it('sets up after dependency', async () => {
-
-    const dep = new CxModule(
-        'dep',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-          },
-        },
-    );
-    const module = new CxModule(
-        'test',
-        {
-          needs: dep,
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 201));
-          },
-        },
-    );
+    const dep = new CxModule('dep', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+      },
+    });
+    const module = new CxModule('test', {
+      needs: dep,
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 201));
+      },
+    });
     const supply = builder.provide(module);
 
     expect(context.get(entry1)).toBe(1);
@@ -538,7 +476,6 @@ describe('CxModule', () => {
     expect(context.get(entry1)).toBe(1);
   });
   it('handles itself as a dependency', async () => {
-
     class TestModule extends CxModule {
 
       constructor() {
@@ -554,7 +491,7 @@ describe('CxModule', () => {
         return new Set([this]);
       }
 
-    }
+}
 
     const module = new TestModule();
     const supply = builder.provide(module);
@@ -568,26 +505,19 @@ describe('CxModule', () => {
     expect(context.get(entry1)).toBe(1);
   });
   it('fails to load on dependency load failure', async () => {
-
     const error = new Error('test');
-    const dep = new CxModule(
-        'dep',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-            throw error;
-          },
-        },
-    );
-    const module = new CxModule(
-        'test',
-        {
-          needs: dep,
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 201));
-          },
-        },
-    );
+    const dep = new CxModule('dep', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+        throw error;
+      },
+    });
+    const module = new CxModule('test', {
+      needs: dep,
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 201));
+      },
+    });
 
     builder.provide(module);
     context.get(module).use();
@@ -608,28 +538,21 @@ describe('CxModule', () => {
     expect(context.get(entry1)).toBe(1);
   });
   it('fails to load on dependency init failure', async () => {
-
     const error = new Error('test');
-    const dep = new CxModule(
-        'dep',
-        {
-          setup(setup) {
-            setup.initBy(() => {
-              setup.provide(cxConstAsset(entry1, 101));
-              throw error;
-            });
-          },
-        },
-    );
-    const module = new CxModule(
-        'test',
-        {
-          needs: dep,
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 201));
-          },
-        },
-    );
+    const dep = new CxModule('dep', {
+      setup(setup) {
+        setup.initBy(() => {
+          setup.provide(cxConstAsset(entry1, 101));
+          throw error;
+        });
+      },
+    });
+    const module = new CxModule('test', {
+      needs: dep,
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 201));
+      },
+    });
 
     builder.provide(module);
     context.get(module).use();
@@ -650,33 +573,29 @@ describe('CxModule', () => {
     expect(context.get(entry1)).toBe(1);
   });
   it('replaces other module when explicitly loaded', async () => {
-
-    const replaced = new CxModule(
-        'replaced',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-          },
-        },
-    );
+    const replaced = new CxModule('replaced', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+      },
+    });
 
     expect(context.get(entry1)).toBe(1);
     expect(context.get(entry2)).toBe(2);
 
     const replacedSupply = builder.provide(replaced);
 
-    expect(await context.get(replaced).use().whenReady).toMatchObject({ module: replaced, ready: true });
+    expect(await context.get(replaced).use().whenReady).toMatchObject({
+      module: replaced,
+      ready: true,
+    });
     expect(context.get(entry1)).toBe(101);
 
-    const replacer = new CxModule(
-        'replacer',
-        {
-          has: replaced,
-          setup(setup) {
-            setup.provide(cxConstAsset(entry2, 102));
-          },
-        },
-    );
+    const replacer = new CxModule('replacer', {
+      has: replaced,
+      setup(setup) {
+        setup.provide(cxConstAsset(entry2, 102));
+      },
+    });
     const replacerSupply = builder.provide(replacer);
 
     context.get(replacer).use();
@@ -697,30 +616,23 @@ describe('CxModule', () => {
     expect(context.get(entry2)).toBe(2);
   });
   it('implicitly loaded on replaced module use', async () => {
-
-    const replaced = new CxModule(
-        'replaced',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-          },
-        },
-    );
+    const replaced = new CxModule('replaced', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+      },
+    });
 
     expect(context.get(entry1)).toBe(1);
     expect(context.get(entry2)).toBe(2);
 
     const replacedSupply = builder.provide(replaced);
 
-    const replacer = new CxModule(
-        'test',
-        {
-          has: replaced,
-          setup(setup) {
-            setup.provide(cxConstAsset(entry2, 102));
-          },
-        },
-    );
+    const replacer = new CxModule('test', {
+      has: replaced,
+      setup(setup) {
+        setup.provide(cxConstAsset(entry2, 102));
+      },
+    });
 
     builder.provide(replacer);
     context.get(replaced).use();
@@ -740,29 +652,22 @@ describe('CxModule', () => {
     });
   });
   it('handles immediate module replacement', async () => {
-
-    const replaced = new CxModule(
-        'replaced',
-        {
-          setup(setup) {
-            setup.provide(cxConstAsset(entry1, 101));
-          },
-        },
-    );
+    const replaced = new CxModule('replaced', {
+      setup(setup) {
+        setup.provide(cxConstAsset(entry1, 101));
+      },
+    });
 
     builder.provide(replaced);
 
     const replacedUse = context.get(replaced).use();
 
-    const replacer = new CxModule(
-        'test',
-        {
-          has: replaced,
-          setup(setup) {
-            setup.provide(cxConstAsset(entry2, 102));
-          },
-        },
-    );
+    const replacer = new CxModule('test', {
+      has: replaced,
+      setup(setup) {
+        setup.provide(cxConstAsset(entry2, 102));
+      },
+    });
     const replacerSupply = builder.provide(replacer);
 
     expect(await replacedUse.whenReady).toMatchObject({ module: replacer, ready: true });
@@ -782,25 +687,22 @@ describe('CxModule', () => {
   });
 
   function whenStatus<T>(
-      target: CxModule,
-      checkStatus: (status: CxModule.Status) => T | false | null | undefined,
+    target: CxModule,
+    checkStatus: (status: CxModule.Status) => T | false | null | undefined,
   ): Promise<T> {
-    return new Promise(resolve => context.get(target).read(
-        status => {
+    return new Promise(resolve => context.get(target).read(status => {
+        const result = checkStatus(status);
 
-          const result = checkStatus(status);
-
-          if (result) {
-            resolve(result);
-          }
-        },
-    ));
+        if (result) {
+          resolve(result);
+        }
+      }));
   }
 
   function whenImplementedBy(target: CxModule, impl: CxModule): Promise<unknown> {
     return whenStatus(
-        target,
-        ({ module, provided, ready }) => ready && provided && module === impl,
+      target,
+      ({ module, provided, ready }) => ready && provided && module === impl,
     );
   }
 

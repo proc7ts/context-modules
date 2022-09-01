@@ -2,7 +2,12 @@ import { CxAsset, CxEntry, CxModifier, CxValues } from '@proc7ts/context-values'
 import { AfterEvent, EventKeeper, OnEvent } from '@proc7ts/fun-events';
 import { lazyValue, valueProvider } from '@proc7ts/primitives';
 import { Supply, SupplyPeer } from '@proc7ts/supply';
-import { CxModule$Impl, CxModule$Impl__symbol, CxModule$implement, CxModule$replace } from './module.impl';
+import {
+  CxModule$Impl,
+  CxModule$Impl__symbol,
+  CxModule$implement,
+  CxModule$replace,
+} from './module.impl';
 import { CxModule$Usage } from './module.usage.impl';
 
 /**
@@ -42,7 +47,8 @@ import { CxModule$Usage } from './module.usage.impl';
  * myModuleSupply.off();
  * ```
  */
-export class CxModule implements CxEntry<CxModule.Handle, CxModule>, CxAsset.Placer<CxModule.Handle, CxModule> {
+export class CxModule
+  implements CxEntry<CxModule.Handle, CxModule>, CxAsset.Placer<CxModule.Handle, CxModule> {
 
   /**
    * @internal
@@ -94,16 +100,15 @@ export class CxModule implements CxEntry<CxModule.Handle, CxModule>, CxAsset.Pla
     return this[CxModule$Impl__symbol].has;
   }
 
-  perContext(target: CxEntry.Target<CxModule.Handle, CxModule>): CxEntry.Definition<CxModule.Handle> {
-
+  perContext(
+    target: CxEntry.Target<CxModule.Handle, CxModule>,
+  ): CxEntry.Definition<CxModule.Handle> {
     const getUsageAndHandle = lazyValue<[CxModule$Usage, CxModule.Handle]>(() => {
-
       const usage = new CxModule$Usage(target, this);
 
       return [usage, usage.createHandle()];
     });
     let getHandle = (): CxModule.Handle => {
-
       const [usage, handle] = getUsageAndHandle();
 
       getHandle = valueProvider(handle); // Allow to receive handle before setup completes.
@@ -123,8 +128,8 @@ export class CxModule implements CxEntry<CxModule.Handle, CxModule>, CxAsset.Pla
   }
 
   placeAsset(
-      _target: CxEntry.Target<CxModule.Handle, CxModule>,
-      collector: CxAsset.Collector<CxModule>,
+    _target: CxEntry.Target<CxModule.Handle, CxModule>,
+    collector: CxAsset.Collector<CxModule>,
   ): void {
     collector(this);
   }
@@ -169,12 +174,10 @@ export class CxModule implements CxEntry<CxModule.Handle, CxModule>, CxAsset.Pla
 }
 
 export namespace CxModule {
-
   /**
    * Context module construction options.
    */
   export interface Options {
-
     /**
      * A module or modules the constructed one requires.
      *
@@ -202,7 +205,6 @@ export namespace CxModule {
      * is set up asynchronously.
      */
     setup?(setup: CxModule.Setup): void | PromiseLike<unknown>;
-
   }
 
   /**
@@ -213,7 +215,6 @@ export namespace CxModule {
    * @typeParam TCtx - Target context type.
    */
   export interface Setup extends CxValues, CxModifier, SupplyPeer {
-
     /**
      * The module to set up.
      */
@@ -254,7 +255,6 @@ export namespace CxModule {
      * asynchronously.
      */
     initBy(init: (this: void) => void | PromiseLike<unknown>): void;
-
   }
 
   /**
@@ -265,7 +265,6 @@ export namespace CxModule {
    * Implements an `EventKeeper` interface by sending a {@link CxModule.Status module load status} updates.
    */
   export interface Handle extends EventKeeper<[CxModule.Status]> {
-
     /**
      * An `AfterEvent` keeper of module load status.
      *
@@ -282,7 +281,6 @@ export namespace CxModule {
      * @returns A module usage instance.
      */
     use(user?: SupplyPeer): Use;
-
   }
 
   /**
@@ -295,7 +293,6 @@ export namespace CxModule {
    * The module use instance can be used as its handle too.
    */
   export interface Use extends Handle, SupplyPeer {
-
     /**
      * An `AfterEvent` keeper of module load status.
      *
@@ -333,7 +330,6 @@ export namespace CxModule {
      * The module use stops once this supply is cut off.
      */
     readonly supply: Supply;
-
   }
 
   /**
@@ -342,7 +338,6 @@ export namespace CxModule {
    * This status is reported by {@link CxModule.Handle loaded module handle}.
    */
   export interface Status {
-
     /**
      * Loaded module.
      *
@@ -380,7 +375,5 @@ export namespace CxModule {
      * Error occurred while loading the module.
      */
     readonly error?: unknown | undefined;
-
   }
-
 }

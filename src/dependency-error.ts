@@ -13,9 +13,9 @@ export class CxDependencyError extends ReferenceError {
    * @param message - An error message.
    */
   constructor(
-      readonly module: CxModule,
-      readonly reasons: readonly (readonly [CxModule, unknown?])[] = [],
-      message: string = CxDependencyError$defaultMessage(module, reasons),
+    readonly module: CxModule,
+    readonly reasons: readonly (readonly [CxModule, unknown?])[] = [],
+    message: string = CxDependencyError$defaultMessage(module, reasons),
   ) {
     super(message);
   }
@@ -27,27 +27,23 @@ export class CxDependencyError extends ReferenceError {
 }
 
 function CxDependencyError$defaultMessage(
-    module: CxModule,
-    dependencies: readonly (readonly [CxModule, unknown?])[],
+  module: CxModule,
+  dependencies: readonly (readonly [CxModule, unknown?])[],
 ): string {
+  const reasons = dependencies.reduce((out, [dep, reason]) => {
+    if (out) {
+      out += ', ';
+    } else {
+      out = ': ';
+    }
+    if (reason !== undefined) {
+      out += `${dep} failed to load (${reason})`;
+    } else {
+      out += `${dep} not loaded`;
+    }
 
-  const reasons = dependencies.reduce(
-      (out, [dep, reason]) => {
-        if (out) {
-          out += ', ';
-        } else {
-          out = ': ';
-        }
-        if (reason !== undefined) {
-          out += `${dep} failed to load (${reason})`;
-        } else {
-          out += `${dep} not loaded`;
-        }
-
-        return out;
-      },
-      '',
-  );
+    return out;
+  }, '');
 
   return `Failed to load ${module}${reasons}`;
 }

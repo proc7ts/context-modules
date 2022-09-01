@@ -40,7 +40,6 @@ export class CxModule$Usage {
     supply.cuts(this._rev);
 
     this._impl.read(module => {
-
       const prevSupply = this._rev.it.supply;
 
       if (module) {
@@ -52,9 +51,8 @@ export class CxModule$Usage {
   }
 
   createHandle(): CxModule.Handle {
-
     const read: AfterEvent<[CxModule.Status]> = this._rev.read.do(
-        mapAfter_(({ status }) => status),
+      mapAfter_(({ status }) => status),
     );
 
     const handle: CxModule.Handle = {
@@ -68,28 +66,33 @@ export class CxModule$Usage {
 
   setup(target: CxEntry.Target<CxModule.Handle, CxModule>): void {
     this._setup = () => {
-
       const rev = this._rev.it;
-      const { status: { module }, supply } = rev;
+      const {
+        status: { module },
+        supply,
+      } = rev;
 
       if (module !== this.module) {
         // Load implementation module instead.
         // The implementation module expected to be provided already.
-        target.get(module).use(supply).read({
-          supply,
-          receive: (_ctx, { settled, ready, error }) => {
-            this._updateStatus(rev, settled, ready, error);
-          },
-        });
+        target
+          .get(module)
+          .use(supply)
+          .read({
+            supply,
+            receive: (_ctx, { settled, ready, error }) => {
+              this._updateStatus(rev, settled, ready, error);
+            },
+          });
       } else {
         CxModule$load(target, rev)
-            .then(({ whenReady }) => {
-              this._updateStatus(rev, true, false);
+          .then(({ whenReady }) => {
+            this._updateStatus(rev, true, false);
 
-              return whenReady;
-            })
-            .then(() => this._updateStatus(rev, true, true))
-            .catch(error => rev.supply.off(error));
+            return whenReady;
+          })
+          .then(() => this._updateStatus(rev, true, true))
+          .catch(error => rev.supply.off(error));
       }
     };
   }
@@ -99,10 +102,10 @@ export class CxModule$Usage {
   }
 
   private _updateStatus(
-      rev: CxModule$Rev,
-      settled: boolean,
-      ready: boolean,
-      error?: unknown,
+    rev: CxModule$Rev,
+    settled: boolean,
+    ready: boolean,
+    error?: unknown,
   ): void {
     // Ensure updating the correct revision.
     if (this._rev.it.supply !== rev.supply) {
@@ -124,9 +127,7 @@ export class CxModule$Usage {
   }
 
   private _load(module: CxModule): void {
-
     const supply = new Supply(noop).needs(this._rev).whenOff(error => {
-
       const rev = this._rev.it;
 
       if (rev.supply === supply) {
@@ -162,7 +163,6 @@ export class CxModule$Usage {
   }
 
   private _use(handle: CxModule.Handle, user?: SupplyPeer): CxModule.Use {
-
     const supply = new Supply(noop);
 
     if (user) {
@@ -181,7 +181,6 @@ export class CxModule$Usage {
     if (!supply.isOff) {
       supply.whenOff(error => {
         if (!--this._useCounter) {
-
           const rev = this._rev.it;
 
           this._rev.it = {
@@ -222,21 +221,17 @@ export class CxModule$Usage {
 }
 
 interface CxModule$Rev {
-
   readonly status: CxModule.Status;
   readonly supply: Supply;
-
 }
 
 async function CxModule$load(
-    target: CxEntry.Target<CxModule.Handle, CxModule>,
-    { status: { module }, supply }: CxModule$Rev,
+  target: CxEntry.Target<CxModule.Handle, CxModule>,
+  { status: { module }, supply }: CxModule$Rev,
 ): Promise<CxModule$Init> {
-
   const moduleInit = new CxModule$Init(module);
 
   await module.setup({
-
     context: target.context,
     module,
     supply,
@@ -249,10 +244,9 @@ async function CxModule$load(
       return target.provide(asset).needs(supply);
     },
 
-    initBy(init: (this: void) => (void | PromiseLike<unknown>)) {
+    initBy(init: (this: void) => void | PromiseLike<unknown>) {
       moduleInit.initBy(init);
     },
-
   });
 
   return moduleInit;
@@ -265,22 +259,22 @@ class CxModule$Init {
   private _ready!: (result?: PromiseLike<unknown>) => void;
 
   constructor(private readonly _module: CxModule) {
-    this.whenReady = new Promise(resolve => this._ready = resolve);
+    this.whenReady = new Promise(resolve => (this._ready = resolve));
   }
 
   initBy(init: (this: void) => void | PromiseLike<unknown>): void {
-
-    const rev: Promise<unknown> = this._whenDone = this._whenDone
-        .then(init)
-        .finally(() => this._done(rev));
-
+    const rev: Promise<unknown> = (this._whenDone = this._whenDone
+      .then(init)
+      .finally(() => this._done(rev)));
   }
 
   private _done(rev: Promise<unknown>): void {
     if (this._whenDone === rev) {
       this._ready(rev);
       this.initBy = _init => {
-        throw new TypeError(`${this._module} initialized already, and does not accept new initializers`);
+        throw new TypeError(
+          `${this._module} initialized already, and does not accept new initializers`,
+        );
       };
     }
   }
@@ -288,20 +282,20 @@ class CxModule$Init {
 }
 
 function CxModule$Use$when(
-    status: AfterEvent<[CxModule.Status]>,
-    test: (status: CxModule.Status) => boolean,
+  status: AfterEvent<[CxModule.Status]>,
+  test: (status: CxModule.Status) => boolean,
 ): OnEvent<[CxModule.Status]> {
   return onEventBy(receiver => status({
-    supply: receiver.supply,
-    receive: (context, status) => {
-      if (test(status)) {
-        receiver.receive(context, status);
-        receiver.supply.off();
-      } else if (status.error) {
-        receiver.supply.off(status.error);
-      }
-    },
-  }));
+      supply: receiver.supply,
+      receive: (context, status) => {
+        if (test(status)) {
+          receiver.receive(context, status);
+          receiver.supply.off();
+        } else if (status.error) {
+          receiver.supply.off(status.error);
+        }
+      },
+    }));
 }
 
 function CxModule$isSettled({ settled }: CxModule.Status): boolean {
