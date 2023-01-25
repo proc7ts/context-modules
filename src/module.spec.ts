@@ -643,8 +643,9 @@ describe('CxModule', () => {
     replacedSupply.off();
     expect(context.get(entry1)).toBe(1);
     expect(context.get(entry2)).toBe(102);
+
     expect(await context.get(replaced).read).toMatchObject({
-      module: replaced,
+      module: replacer,
       provided: true,
       used: true,
       settled: true,
