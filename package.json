@@ -21,6 +21,7 @@
     "types": "./dist/context-modules.d.ts",
     "default": "./dist/context-modules.js"
   },
+  "sideEffects": false,
   "peerDependencies": {
     "@proc7ts/context-values": "^7.0.1",
     "@proc7ts/fun-events": "^10.5.1"
